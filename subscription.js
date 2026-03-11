@@ -314,6 +314,9 @@ router.delete('/workspaces/:id', auth, async (req, res) => {
             { $pull: { workspacesJoined: req.params.id } }
         );
 
+        // --- NEW BUG FIX: PURGE DANGLING INVITATIONS ---
+        await Invitation.deleteMany({ workspaceId: req.params.id });
+
         // Activity Log
         await new Activity({
             userId: req.user.id,
@@ -402,15 +405,16 @@ router.post('/create-checkout', auth, async (req, res) => {
 router.post('/customer-portal', auth, async (req, res) => {
     try {
         const user = await User.findById(req.user.id);
-
         if (!user.stripeCustomerId) {
-            return res.status(400).json({ msg: "No active subscription found." });
+            return res.status(400).json({ msg: "No active paid subscription found." });
         }
 
-        // Create a portal session
+        const domainUrl = req.headers.origin || 'http://localhost:5500';
+
+        // Securely redirect to Stripe's hosted cancellation/renewal portal
         const session = await stripe.billingPortal.sessions.create({
             customer: user.stripeCustomerId,
-            return_url: 'http://localhost:5500/dashboard.html',
+            return_url: `${domainUrl}/dashboard.html`,
         });
 
         res.json({ url: session.url });

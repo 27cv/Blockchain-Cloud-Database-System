@@ -81,6 +81,7 @@ app.use('/api/storage', require('./routes/storage'));
 app.use('/api/blockchain', require('./routes/blockchain'));
 app.use('/api/subscription', require('./routes/subscription'));
 app.use('/api/activity', require('./routes/activity'));
+app.use('/api/reports', require('./routes/reports'));
 
 // --- 4. DATABASE CONNECTION ---
 mongoose.connect(process.env.MONGO_URI)
