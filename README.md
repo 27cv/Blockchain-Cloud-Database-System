@@ -150,6 +150,7 @@ Signing Secret: Copy the whsec_ secret provided by the CLI and add it to your .e
 
 - Ensure the AWS_REGION in your .env matches your bucket's physical location.
 
+
 **4. Remix IDE (Smart Contract Deployment)**
 
 - To enable the Access Control List (ACL) features, you must deploy the WorkspaceACL contract to your local Ganache network.
