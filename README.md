@@ -1,67 +1,106 @@
-# 🚀 BCDS: Blockchain Cloud Database System
+🚀 BCDS: Blockchain Cloud Database System
+A secure, hybrid cloud storage solution that combines AES-256 Encryption, AWS S3 Storage, and a Smart Contract Ledger to ensure data integrity, privacy, and automated access control.
 
-A secure, hybrid cloud storage solution that combines **AES-256 Encryption**, **AWS S3 Storage**, and a **Blockchain Ledger** to ensure data integrity, privacy, and auditability.
+🌟 Key Features
+🔐 Military-Grade Encryption: Files are encrypted on the server (AES-256) before transmission, ensuring privacy even from cloud providers.
 
-![Project Status](https://img.shields.io/badge/Status-Active-success)
-![License](https://img.shields.io/badge/License-MIT-blue)
+☁️ AWS S3 Integration: Scalable and durable object storage managed via the AWS SDK.
 
-## 🌟 Key Features
+⛓️ Immutable Audit Ledger: Every file upload is hashed (SHA-256) and recorded in a blockchain ledger to prove data integrity.
 
-* **🔐 Military-Grade Encryption:** Files are encrypted (AES-256) on the server *before* being sent to the cloud. Even the cloud provider (AWS) cannot read your data.
-* **☁️ AWS S3 Integration:** Scalable, durable object storage managed via the AWS SDK.
-* **⛓️ Immutable Audit Log:** Every file upload is hashed (SHA-256) and recorded in a local Blockchain ledger. This proves data has not been tampered with.
-* **📂 Secure Sharing:** Generate unique, time-limited links to share files securely with external users.
-* **👁️ Secure Preview:** Decrypt and view images directly in the browser using Blob URLs, without saving sensitive files to the local disk.
-* **💎 Subscription Management:** Dynamic storage quotas (Basic: 50MB, Premium: 50GB, Enterprise: 500GB) with real-time usage tracking.
+🛡️ Smart Contract ACL: Access to shared workspaces is governed by a Blockchain Access Control List, verified on-chain before downloads are permitted.
 
----
+💎 Subscription Management: Dynamic storage quotas (Basic, Premium, Enterprise) with real-time usage tracking and Stripe integration.
 
-## 🛠️ Tech Stack
+🛠️ Tech Stack
+Runtime: Node.js
 
-* **Runtime:** Node.js
-* **Framework:** Express.js
-* **Database:** MongoDB Atlas (User Data & Metadata)
-* **Storage:** AWS S3 (Encrypted Blobs)
-* **Security:** JSON Web Token (JWT), BCrypt, Crypto (Node.js)
-* **Frontend:** HTML5, CSS3, Vanilla JavaScript (Fetch API)
+Framework: Express.js
 
----
+Database: MongoDB Atlas
 
-## ⚙️ Installation & Setup
+Storage: AWS S3
 
-### 1. Prerequisites
-Ensure you have the following installed/configured:
-* [Node.js](https://nodejs.org/) (v14 or higher)
-* [MongoDB Atlas](https://www.mongodb.com/cloud/atlas) Connection String
-* [AWS S3 Bucket](https://aws.amazon.com/s3/) (Access Key & Secret Key)
+Security: JWT, BCrypt, Crypto
 
-### 2. Clone the Repository
-```bash
-git clone [https://github.com/your-username/bcds-secure-storage.git](https://github.com/your-username/bcds-secure-storage.git)
-cd bcds
+Web3: Ethers.js, Solidity (Smart Contracts), Ganache/Sepolia
 
-#### Additional notes for you ####
+Payments: Stripe API
 
-### 3. Install Dependencies
-npm install express mongoose dotenv aws-sdk bcryptjs jsonwebtoken multer cors
+📂 Project Structure
+Plaintext
+blockchain-cloud-database-system/
+├── middleware/
+│   └── auth.js             # JWT Verification Middleware
+├── models/
+│   ├── Activity.js         # Activity Log Schema
+│   ├── Block.js            # Blockchain Block Schema
+│   ├── File.js             # File Metadata Schema
+│   ├── Invitation.js       # Workspace Invitation Schema
+│   └── User.js             # User & Subscription Schema
+├── routes/
+│   ├── activity.js         # User Activity Feed logic
+│   ├── auth.js             # Registration & Password Management
+│   ├── blockchain.js       # Ledger & Ethereum Anchoring
+│   ├── reports.js          # Enterprise Analytics & Audit Exports
+│   ├── storage.js          # S3 Upload/Download & ACL Enforcement
+│   └── subscription.js     # Stripe Checkout & Workspace Management
+├── .env.example            # Template for environment variables
+├── contractABI.json        # Smart Contract Interface
+├── dashboard.html          # Main Application UI
+├── login.html              # Authentication UI
+├── server.js               # Express Server Entry Point
+└── package.json            # Project Dependencies
 
-### 4. Configure Environment Variables
+⚙️ Installation & Setup
+1. Prerequisites
+Ensure you have the following installed:
 
-Create a file named .env in the root directory and add your credentials:
-# Server Configuration
-PORT=5000
+Node.js (v14 or higher)
 
-# Database Connection
-MONGO_URI=mongodb+srv://<username>:<password>@cluster0.mongodb.net/bcds?retryWrites=true&w=majority
+MongoDB Atlas account
 
-# Security Secret
-JWT_SECRET=mysecrettoken
+AWS S3 Bucket
 
-# AWS S3 Credentials
+Stripe Developer Account
+
+Ethereum Provider (e.g., Ganache or Infura)
+
+2. Clone the Repository
+Bash
+git clone https://github.com/27cvxy/blockchain-cloud-database-system.git
+cd blockchain-cloud-database-system
+3. Configure Environment Variables
+Create a file named .env in the root directory. Do not share this file. Use the following template and replace the placeholders with your actual credentials:
+
+Code snippet
+PORT=5001
+MONGO_URI=your_mongodb_connection_string
+
+# AWS Credentials
 AWS_ACCESS_KEY_ID=your_aws_access_key
 AWS_SECRET_ACCESS_KEY=your_aws_secret_key
-AWS_REGION=us-east-1
-AWS_BUCKET_NAME=your_bucket_name
+AWS_BUCKET_NAME=your_s3_bucket_name
+AWS_REGION=your_aws_region
 
-### 5. Run the Server (in the VSC terminal)
+# Security & Encryption
+ENCRYPTION_KEY=your_32_character_encryption_key
+JWT_SECRET=your_jwt_secret_token
+
+# Blockchain Configuration
+CONTRACT_ADDRESS=your_deployed_smart_contract_address
+RPC_URL=your_ethereum_rpc_url (e.g., Infura or Ganache)
+SERVER_PRIVATE_KEY=your_wallet_private_key
+
+# Stripe Payments
+STRIPE_SECRET_KEY=your_stripe_secret_key
+STRIPE_WEBHOOK_SECRET=your_stripe_webhook_signing_secret
+
+4. Install Dependencies
+Bash
+npm install
+
+6. Run the Server
+Bash
 node server.js
+The server will start on the port specified in your .env file (default 5001).
