@@ -149,3 +149,27 @@ Signing Secret: Copy the whsec_ secret provided by the CLI and add it to your .e
 - Create an S3 Bucket and ensure the IAM user associated with your AWS_ACCESS_KEY_ID has AmazonS3FullAccess permissions.
 
 - Ensure the AWS_REGION in your .env matches your bucket's physical location.
+
+**4. Remix IDE (Smart Contract Deployment)**
+
+- To enable the Access Control List (ACL) features, you must deploy the WorkspaceACL contract to your local Ganache network.
+
+- Open Remix: Go to Remix IDE.
+
+- Compile: Go to the Solidity Compiler tab, ensure the compiler version is at least 0.8.0, and click Compile WorkspaceACL.sol.
+
+Deploy to Ganache:
+
+- Go to the Deploy & Run Transactions tab.
+
+- Set the Environment to External Http Provider.
+
+- Enter http://127.0.0.1:7545 when prompted to connect to your running Ganache instance.
+
+- Click Deploy.
+
+Update Configuration:
+
+- Copy the Contract Address from Remix and paste it into your .env file under CONTRACT_ADDRESS.
+
+- Copy the ABI from the Compiler tab and update your contractABI.json file in the project root.
