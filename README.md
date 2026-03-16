@@ -121,30 +121,30 @@ node server.js
 ## 🛠️ Advanced Service Setup
 
 1. Stripe (Payment Gateway)
-To handle subscription upgrades and storage limit updates, follow these steps:
+- To handle subscription upgrades and storage limit updates, follow these steps:
 
-API Keys: Log in to your Stripe Dashboard and copy your Secret Key from the Developers > API keys section.
+- API Keys: Log in to your Stripe Dashboard and copy your Secret Key from the Developers > API keys section.
 
-Webhook Forwarding: Since your local server cannot receive external webhooks directly, install the Stripe CLI and run:
+- Webhook Forwarding: Since your local server cannot receive external webhooks directly, install the Stripe CLI and run:
 
 Bash
-stripe listen --forward-to localhost:5001/api/subscription/webhook
-Signing Secret: Copy the whsec_ secret provided by the CLI and add it to your .env file.
+- stripe listen --forward-to localhost:5001/api/subscription/webhook
+- Signing Secret: Copy the whsec_ secret provided by the CLI and add it to your .env file.
 
 Product Setup: Create "Premium" and "Enterprise" products in your Stripe Dashboard and ensure their Price IDs match the configuration in your backend logic.
 
 2. Ganache (Local Blockchain)
-The system uses a smart contract for Access Control Lists (ACL) and file integrity.
+- The system uses a smart contract for Access Control Lists (ACL) and file integrity.
 
-Launch Ganache: Open the Ganache GUI or run ganache via CLI on port 7545.
+- Launch Ganache: Open the Ganache GUI or run ganache via CLI on port 7545.
 
-RPC URL: Ensure your .env matches the Ganache RPC server address (default: http://127.0.0.1:7545).
+- RPC URL: Ensure your .env matches the Ganache RPC server address (default: http://127.0.0.1:7545).
 
-Private Key: Copy one of the private keys from Ganache and paste it into SERVER_PRIVATE_KEY in your .env. This allows the server to grant/revoke file access on-chain.
+- Private Key: Copy one of the private keys from Ganache and paste it into SERVER_PRIVATE_KEY in your .env. This allows the server to grant/revoke file access on-chain.
 
-Contract Deployment: Deploy your access control contract and paste the resulting address into the CONTRACT_ADDRESS field in your .env.
+- Contract Deployment: Deploy your access control contract and paste the resulting address into the CONTRACT_ADDRESS field in your .env.
 
 3. AWS S3 (Cloud Storage)
-Create an S3 Bucket and ensure the IAM user associated with your AWS_ACCESS_KEY_ID has AmazonS3FullAccess permissions.
+- Create an S3 Bucket and ensure the IAM user associated with your AWS_ACCESS_KEY_ID has AmazonS3FullAccess permissions.
 
-Ensure the AWS_REGION in your .env matches your bucket's physical location.
+- Ensure the AWS_REGION in your .env matches your bucket's physical location.
