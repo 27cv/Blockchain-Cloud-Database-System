@@ -127,11 +127,11 @@ node server.js
 
 - Webhook Forwarding: Since your local server cannot receive external webhooks directly, install the Stripe CLI and run:
 
+- Product Setup: Create "Premium" and "Enterprise" products in your Stripe Dashboard and ensure their Price IDs match the configuration in your backend logic.
+
 Bash
 - stripe listen --forward-to localhost:5001/api/subscription/webhook
 - Signing Secret: Copy the whsec_ secret provided by the CLI and add it to your .env file.
-  
-- Product Setup: Create "Premium" and "Enterprise" products in your Stripe Dashboard and ensure their Price IDs match the configuration in your backend logic.
 
 2. Ganache (Local Blockchain)
 - The system uses a smart contract for Access Control Lists (ACL) and file integrity.
