@@ -120,7 +120,7 @@ node server.js
 
 ## 🛠️ Advanced Service Setup
 
-1. Stripe (Payment Gateway)
+**1. Stripe (Payment Gateway)**
 - To handle subscription upgrades and storage limit updates, follow these steps:
 
 - API Keys: Log in to your Stripe Dashboard and copy your Secret Key from the Developers > API keys section.
@@ -132,7 +132,8 @@ Bash
 stripe listen --forward-to localhost:5001/api/subscription/webhook
 Signing Secret: Copy the whsec_ secret provided by the CLI and add it to your .env file.
 
-2. Ganache (Local Blockchain)
+
+**2. Ganache (Local Blockchain)**
 - The system uses a smart contract for Access Control Lists (ACL) and file integrity.
 
 - Launch Ganache: Open the Ganache GUI or run ganache via CLI on port 7545.
@@ -143,7 +144,8 @@ Signing Secret: Copy the whsec_ secret provided by the CLI and add it to your .e
 
 - Contract Deployment: Deploy your access control contract and paste the resulting address into the CONTRACT_ADDRESS field in your .env.
 
-3. AWS S3 (Cloud Storage)
+
+**3. AWS S3 (Cloud Storage)**
 - Create an S3 Bucket and ensure the IAM user associated with your AWS_ACCESS_KEY_ID has AmazonS3FullAccess permissions.
 
 - Ensure the AWS_REGION in your .env matches your bucket's physical location.
